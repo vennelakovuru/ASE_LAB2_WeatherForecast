@@ -1,0 +1,82 @@
+<div class="container">
+  <br><br>
+  <div class="text-center">
+    <label for="city"><h3 class="text-white">City Name </h3></label>
+    <input type="text"
+           id="cityName" name="cityName"
+           class=" input-sm "
+           placeholder="Enter here.."
+           [(ngModel)]="cityName"/>
+    <button type="button"
+            class="btn-primary"
+            (click)="getWeather()">Get Weather Details
+    </button>
+  </div>
+  <br>
+  <div><h3 class="text-white">Current Weather</h3>
+    <div class="card bg-light text-dark">
+      <table class="table table-bordered mb-0" cellspacing="20">
+        <thead>
+        <tr style="background: lightblue">
+          <th>Temperature in K</th>
+          <th>Pressure hPa</th>
+          <th>Humidity %</th>
+          <th>Feels Like</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngIf="currentWeatherInfo != null">
+          <td>
+            {{ currentWeatherInfo.main.temp }}
+          </td>
+          <td>
+            {{ currentWeatherInfo.main.pressure }}
+          </td>
+          <td>
+            {{ currentWeatherInfo.main.humidity }}
+          </td>
+          <td>
+            {{ currentWeatherInfo.main.feels_like }}
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <br><br>
+    <div><h3 class="text-white">Forecast</h3>
+      <div class="card bg-light text-dark">
+        <table class="table table-bordered mb-0" cellspacing="20">
+          <thead>
+          <tr style="background: lightblue">
+            <th>Time in UTC</th>
+            <th>Temperature in K</th>
+            <th>Pressure hPa</th>
+            <th>Humidity %</th>
+            <th>Feels Like</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of forecastWeatherInfo">
+            <td>
+              {{ item.dt_txt.slice(10) }}
+            </td>
+            <td>
+              {{ item.main.temp }}
+            </td>
+            <td>
+              {{ item.main.pressure }}
+            </td>
+            <td>
+              {{ item.main.humidity }}
+            </td>
+            <td>
+              {{ item.main.feels_like }}
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <br>
+</div>
